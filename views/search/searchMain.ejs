@@ -1,0 +1,37 @@
+<%- include("../includes/header.ejs", {title:"Music Collection: Search"}); %>
+
+    <h1>Music Collection: Search</h1>
+    <p>
+        Select how you would like to search the database:
+    </p>
+
+    <br />
+
+    <table width="65%">
+        <tr>
+            <td align="center" width="25%"><form action="/artist/search">
+                    <input type="submit" value="Search Artists"/>
+                </form>
+            </td>
+            <td align="center" width="25%"><form action="/album/search">
+                    <input type="submit" value="Search Albums"/>
+                </form>
+            </td>
+            <td align="center" width="25%"><form action="/track/search">
+                    <input type="submit" value="Search Tracks"/>
+                </form>
+            </td>
+            <td align="center" width="25%"><form action="/recComp/search">
+                    <input type="submit" value="Search Record Companies"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+
+    <p>
+        <a href="/">Return to Home Page</a>
+    </p>
+
+<%- include("../includes/footer.ejs"); %>
