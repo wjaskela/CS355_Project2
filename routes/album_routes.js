@@ -40,6 +40,7 @@ router.get('/', function(req, res){
 // View the tracks for the given album id
 router.get('/tracks', function(req, res){
     //console.log (req.query);
+    console.log (req);
     album_id = req.query['album_id'];
     if(req.query.album_id == null) {
         res.send('album_id is null');
