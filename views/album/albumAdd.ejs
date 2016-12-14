@@ -1,0 +1,62 @@
+<%- include("../includes/header.ejs", {title:"Albums - Add New"}); %>
+
+<h1>Add New Album</h1>
+<form action="/album/insert" method="get">
+    Title: <input id="title" name="title" type="text" />
+    <br />
+    <br />
+    Album Cover Art: <input id="cover_lbl_picture" name="cover_lbl_picture" type="text" />
+    <br />
+    <br />
+    Artist
+    <select id="band_name" name="band_name">
+        <%
+        var noDups = [];
+        for(var i=0; artist.length > i; i++ ) {
+            var selected = "";
+            var bandName = artist[i].band_name;
+            if(noDups.indexOf(bandName) == -1){
+                //console.log("Adding %s" % (bandName));
+                noDups.push (bandName);
+            }
+            else{
+                //console.log ("Not adding");
+                continue;
+            }
+        %>
+        <option value="<%= artist[i].band_name %>"><%= bandName %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Record Company
+    <select id="name" name="name">
+        <%
+        var noDups = [];
+        for(var i=0; record_comp.length > i; i++ ) {
+            var selected = "";
+            var RCName = record_comp[i].name;
+            if(noDups.indexOf(RCName) == -1){
+                //console.log("Adding %s" % (RCName));
+                noDups.push (RCName);
+            }
+            else{
+                //console.log ("Not adding");
+                continue;
+            }
+        %>
+        <option value="<%= record_comp[i].name %>"><%= RCName %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <br />
+    <input type="submit" />
+</form>
+
+<br />
+<form action="/album/all">
+    <input type="submit" value="Cancel and return"/>
+</form>
+
+<%- include("../includes/footer.ejs"); %>

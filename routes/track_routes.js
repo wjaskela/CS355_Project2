@@ -16,7 +16,7 @@ router.get('/all', function(req, res) {
 
 });
 
-// View the track for the given id
+// View the track for the given Album id
 router.get('/', function(req, res){
     if(req.query.track_id == null) {
         res.send('track_id is null');

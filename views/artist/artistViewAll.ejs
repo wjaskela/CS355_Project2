@@ -18,16 +18,22 @@
         <td><%= result[i].genre %></td>
         <td><a href="<%= result[i].website %>"><%= result[i].website %></td>
         <td>
-            <!--<button onclick="event.preventDefault();window.location
-                    .href='/artist/edit2/?artist_id=<%= result[i].artist_id %>'">Edit</button>-->
-            <form action="/artist/delet/" style="display:inline;">
-                <input type="hidden" name="artist_id" id="artist_id" value="<%= result[i].artist_id %>" />
+            <button onclick="event.preventDefault();window.location
+                    .href='/artist/edit2/?band_name=<%= result[i].band_name %>'">Edit</button>
+            <form action="/artist/delete/" style="display:inline;">
+                <input type="hidden" name="band_name" id="band_name" value="<%= result[i].band_name %>" />
                 <input type="submit" value="Delete"/>
             </form>
         </td>
     </tr>
     <% } %>
 </table>
+
+<br />
+<br />
+<form action="/artist/add">
+    <input type="submit" value="Add New Artist"/>
+</form>
 
 <br />
 <br />

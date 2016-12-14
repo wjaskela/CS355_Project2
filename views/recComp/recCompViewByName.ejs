@@ -1,0 +1,17 @@
+<%- include("../includes/header.ejs", {title:"Record Company - " + result[0].name}); %>
+
+<h1>Record Company - <%= result[0].name %></h1>
+<ul>
+    <li>Name: <%= result[0].name %></li>
+    <li>Founded: <%= result[0].founded %></li>
+    <li>Street: Name: <%= result[0].street %></li>
+    <li>City: <%= result[0].city %></li>
+    <li>State: <%= result[0].state %></li>
+    <li>Country: <%= result[0].country %></li>
+    <li>Website: <a href="<%= result[0].website %>"><%= result[0].website %></a></li>
+</ul>
+
+<br />
+<a href = "/recComp/all"><< back to Record Companies</a>
+
+<%- include("../includes/footer.ejs"); %>

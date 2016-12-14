@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title:"Artists - Add New"}); %>
+
+<h1>Add New Artist</h1>
+<form action="/artist/insert" method="get">
+    Band Name: <input id="band_name" name="band_name" type="text" />
+    <br />
+    <br />
+    Singer Name: <input id="singer_name" name="singer_name" type="text" />
+    <br />
+    <br />
+    Date Formed: <input id="date_formed" name="date_formed" type="text" />
+    <br />
+    <br />
+    Origin, City: <input id="origin_city" name="origin_city" type="text" />
+    <br />
+    <br />
+    Origin, State: <input id="origin_state" name="origin_state" type="text" />
+    <br />
+    <br />
+    Genre: <input id="genre" name="genre" type="text" />
+    <br />
+    <br />
+    Website: <input id="website" name="website" type="text" />
+    <br />
+    <br />
+    <input type="submit" />
+</form>
+
+<br />
+<form action="/album/all">
+    <input type="submit" value="Cancel and return"/>
+</form>
+
+<%- include("../includes/footer.ejs"); %>

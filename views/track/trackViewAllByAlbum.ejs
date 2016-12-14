@@ -1,26 +1,23 @@
-<%- include("../includes/header.ejs", {title:"Tracks - View All From <Album>"}); %>
+<%- include("../includes/header.ejs", {title:"Tracks - View All From" + album_id}); %>
 
-<h1>Tracks - View All From \<Album\></h1>
+<h1>Tracks - View All From <%= album_id %></h1>
 
 <br />
 
 <table border="1">
-    <tr><th>Band Name</th>
-        <th>Singer Name</th>
-        <th>Genre</th>
-        <th>Website</th>
+    <tr><th>Track Number</th>
+        <th>Title</th>
+        <th>Duration</th>
         <th>Action</th></tr>
     <% for(var i=0; result.length > i; i++ ) { %>
     <tr>
-        <td><a href="/track/?band_name=<%= result[i].band_name %>"><%= result[i].band_name
-                %></a></td>
-        <td><%= result[i].singer_name %></a></td>
-        <td><%= result[i].genre %></td>
-        <td><a href="<%= result[i].website %>"><%= result[i].website %></td>
+        <td><%= result[i].track_number %></td>
+        <td><%= result[i].title %></td>
+        <td><%= result[i].duration %></td>
         <td>
-            <!--<button onclick="event.preventDefault();window.location
-                    .href='/track/edit2/?track_id=<%= result[i].track_id %>'">Edit</button>-->
-            <form action="/track/delet/" style="display:inline;">
+            <button onclick="event.preventDefault();window.location
+                    .href='/track/edit2/?track_id=<%= result[i].track_id %>'">Edit</button>
+            <form action="/track/delete/" style="display:inline;">
                 <input type="hidden" name="track_id" id="track_id" value="<%= result[i].track_id %>" />
                 <input type="submit" value="Delete"/>
             </form>
@@ -31,7 +28,13 @@
 
 <br />
 <br />
-<a href="/search">Return to Search Page</a>
+<form action="/track/add">
+    <input type="submit" value="Add New Track for this album"/>
+</form>
+
+<br />
+<br />
+<a href="/album/all">Return to Albums</a>
 <br />
 <a href="/">Return to Home Page</a>
 

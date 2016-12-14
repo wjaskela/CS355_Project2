@@ -1,0 +1,24 @@
+<%- include("../includes/header.ejs", {title:"Update" + record_comp.name}); %>
+
+<h1>Update <%= record_comp.name%></h1>
+<form action="/recComp/update" method="get">
+    <input type="hidden" id="name" name="name" value="<%= record_comp.name %>">
+    Founded (Year): <input id="founded" name="founded" size="10" type="text" value="<%= record_comp
+            .founded%>"/>
+    <br />
+    <br />
+    Website Link: <input id="website" name="website" size="50" type="text" value="<%= record_comp
+            .website%>"/>
+    <br />
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<br />
+<form action="/recComp/all">
+    <input type="submit" value="Cancel and return"/>
+</form>
+
+<%- include("../includes/footer.ejs"); %>

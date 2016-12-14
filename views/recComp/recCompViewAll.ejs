@@ -16,16 +16,22 @@
         <td><%= result[i].founded %></td>
         <td><a href="<%= result[i].website %>"><%= result[i].website %></td>
         <td>
-            <!--<button onclick="event.preventDefault();window.location
-                    .href='/recComp/edit2/?recComp_id=<%= result[i].recComp_id %>'">Edit</button>-->
-            <form action="/recComp/delet/" style="display:inline;">
-                <input type="hidden" name="recComp_id" id="recComp_id" value="<%= result[i].recComp_id %>" />
+            <button onclick="event.preventDefault();window.location
+                    .href='/recComp/edit2/?name=<%= result[i].name %>'">Edit</button>
+            <form action="/recComp/delete/" style="display:inline;">
+                <input type="hidden" name="name" id="name" value="<%= result[i].name %>" />
                 <input type="submit" value="Delete"/>
             </form>
         </td>
     </tr>
     <% } %>
 </table>
+
+<br />
+<br />
+<form action="/recComp/add">
+    <input type="submit" value="Add New Record Company"/>
+</form>
 
 <br />
 <br />

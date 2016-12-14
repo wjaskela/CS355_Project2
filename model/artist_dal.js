@@ -22,11 +22,13 @@ exports.getByBand = function(band_name, callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO artist (first_name, last_name, email, artist_id) VALUES (?, ?, ?, ?)';
+    var query = 'INSERT INTO artist (band_name, singer_name, date_formed, origin_city,' +
+        ' origin_state, genre, website) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
     // the question marks in the sql query above will be replaced by the values of the
     // the data in queryData
-    var queryData = [params.first_name, params.last_name, params.email, params.artist_id];
+    var queryData = [params.band_name, params.singer_name, params.date_formed, params.origin_city,
+                     params.origin_state, params.genre, params.website];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -34,9 +36,9 @@ exports.insert = function(params, callback) {
 
 };
 
-exports.delete = function(artist_id, callback) {
-    var query = 'DELETE FROM artist WHERE artist_id = ?';
-    var queryData = [artist_id];
+exports.delete = function(band_name, callback) {
+    var query = 'DELETE FROM artist WHERE band_name = ?';
+    var queryData = [band_name];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -44,8 +46,9 @@ exports.delete = function(artist_id, callback) {
 };
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE artist SET first_name = ?, last_name = ?, email = ? WHERE artist_id = ?';
-    var queryData = [params.first_name, params.last_name, params.email, params.artist_id];
+    var query = 'UPDATE artist SET singer_name = ?, date_formed = ?, genre = ?, website' +
+        ' = ? WHERE band_name = ?';
+    var queryData = [params.singer_name, params.date_formed, params.genre, params.website, params.band_name];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -55,18 +58,18 @@ exports.update = function(params, callback) {
 /*  Stored procedure used in this example
  DROP PROCEDURE IF EXISTS artist_getinfo;
  DELIMITER //
- CREATE PROCEDURE artist_getinfo (_artist_id int)
+ CREATE PROCEDURE artist_getinfo (_band_name int)
  BEGIN
- SELECT * FROM artist WHERE artist_id = _artist_id;
+ SELECT * FROM artist WHERE band_name = _band_name;
  END //
  DELIMITER ;
  # Call the Stored Procedure
  CALL artist_getinfo (4);
  */
 
-exports.edit = function(artist_id, callback) {
+exports.edit = function(band_name, callback) {
     var query = 'CALL artist_getinfo(?)';
-    var queryData = [artist_id];
+    var queryData = [band_name];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);

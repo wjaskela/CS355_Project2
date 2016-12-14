@@ -13,7 +13,7 @@ exports.getAll = function(callback) {
 };
 
 exports.getById = function(record_comp_id, callback) {
-    var query = 'SELECT * FROM record_comp WHERE record_comp_id = ?';
+    var query = 'SELECT * FROM record_comp WHERE name = ?';
     var queryData = [record_comp_id];
 
     connection.query(query, queryData, function(err, result) {
@@ -22,11 +22,13 @@ exports.getById = function(record_comp_id, callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO record_comp (first_name, last_name, email, record_comp_id) VALUES (?, ?, ?, ?)';
+    var query = 'INSERT INTO record_comp (name, founded, street, city, state, country, website)' +
+        ' VALUES (?, ?, ?, ?, ?, ?, ?)';
 
     // the question marks in the sql query above will be replaced by the values of the
     // the data in queryData
-    var queryData = [params.first_name, params.last_name, params.email, params.record_comp_id];
+    var queryData = [params.name, params.founded, params.street, params.city,
+                    params.state, params.country, params.website];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -34,9 +36,9 @@ exports.insert = function(params, callback) {
 
 };
 
-exports.delete = function(record_comp_id, callback) {
-    var query = 'DELETE FROM record_comp WHERE record_comp_id = ?';
-    var queryData = [record_comp_id];
+exports.delete = function(name, callback) {
+    var query = 'DELETE FROM record_comp WHERE name = ?';
+    var queryData = [name];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -44,8 +46,8 @@ exports.delete = function(record_comp_id, callback) {
 };
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE record_comp SET first_name = ?, last_name = ?, email = ? WHERE record_comp_id = ?';
-    var queryData = [params.first_name, params.last_name, params.email, params.record_comp_id];
+    var query = 'UPDATE record_comp SET founded = ?, website = ? WHERE name = ?';
+    var queryData = [params.founded, params.website, params.name];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);

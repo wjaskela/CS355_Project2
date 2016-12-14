@@ -5,7 +5,6 @@
 <br />
 <table border="1">
     <tr><th>Album Title</th>
-        <!--<th>Cover label picture</th>-->
         <th>Artist</th>
         <th>Record Company</th>
         <th>Related Tracks</th>
@@ -15,11 +14,11 @@
         <td><a href="/album/?album_id=<%= result[i].album_id %>"><%= result[i].title %></a></td>
         <td><%= result[i].band_name %></td>
         <td><%= result[i].record_co_name %></td>
-        <td><a href="/album/tracks">Tracks</a></td>
-            <!--<button onclick="event.preventDefault();window.location
-                    .href='/album/edit2/?album_id=<%= result[i].album_id %>'">Edit</button>-->
+        <td><a href="/album/tracks/?album_id=<%= result[i].album_id %>">Tracks</a></td>
         <td>
-            <form action="/album/delet/" style="display:inline;">
+            <button onclick="event.preventDefault();window.location
+                    .href='/album/edit2/?album_id=<%= result[i].album_id %>'">Edit</button>
+            <form action="/album/delete/" style="display:inline;">
                 <input type="hidden" name="album_id" id="album_id" value="<%= result[i].album_id %>" />
                 <input type="submit" value="Delete"/>
             </form>
@@ -27,6 +26,12 @@
     </tr>
     <% } %>
 </table>
+
+<br />
+<br />
+<form action="/album/add">
+    <input type="submit" value="Add New Album"/>
+</form>
 
 <br />
 <br />

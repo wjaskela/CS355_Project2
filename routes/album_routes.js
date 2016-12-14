@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var album_dal = require('../model/album_dal');
+var recComp_dal = require('../model/recComp_dal');
+var artist_dal = require('../model/artist_dal');
+var track_dal = require('../model/track_dal');
 
 
 // View All albums
@@ -34,30 +37,64 @@ router.get('/', function(req, res){
     }
 });
 
+// View the tracks for the given album id
+router.get('/tracks', function(req, res){
+    //console.log (req.query);
+    album_id = req.query['album_id'];
+    if(req.query.album_id == null) {
+        res.send('album_id is null');
+    }
+    else {
+        console.log (album_id);
+        track_dal.getAll(function(err,track) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                albumIdArray = [];
+                for (i = 0; i < track.length; i++){
+                    //console.log (track[i].album_id)
+                    if (track[i].album_id == album_id){
+                        albumIdArray.push (track[i]);
+                    }
+                }
+                //res.send (albumIdArray);
+                //res.send(track);
+                res.render('track/trackViewAllByAlbum', {'result': albumIdArray, 'album_id':album_id});
+            }
+        });
+    }
+});
+
 // Return the add a new album form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    album_dal.getAll(function(err,result) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.render('album/albumAdd', {'album': result});
-        }
+    album_dal.getAllAlbums(function(err,result) {
+        artist_dal.getAll(function(err,artist) {
+            recComp_dal.getAll(function (err, recComp) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.render('album/albumAdd', {
+                        'album': result,
+                        artist: artist,
+                        record_comp: recComp
+                    });
+                }
+            });
+        });
     });
 });
 
 // View the album for the given id
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.first_name == "") {
-        res.send('First name must be provided.');
+    if(req.query.title == "") {
+        res.send('A Title must be provided.');
     }
-    else if(req.query.last_name == "") {
-        res.send('Last name must be provided');
-    }
-    else if(req.query.email == "") {
-        res.send('An email must be provided');
+    else if(req.query.cover_lbl_picture == "") {
+        res.send('A Cover Art picture file (.jpg, .png, etc) must be provided');
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually

@@ -1,0 +1,31 @@
+<%- include("../includes/header.ejs", {title:"Update" + artist.band_name}); %>
+
+<h1>Update <%= artist.band_name%></h1>
+<form action="/artist/update" method="get">
+    <input type="hidden" id="band_name" name="band_name" value="<%= artist.band_name %>">
+    Singer Name: <input id="singer_name" name="singer_name" size="50" type="text" value="<%= artist
+            .singer_name%>"/>
+    <br />
+    <br />
+    Date Formed (Year): <input id="date_formed" name="date_formed" size="10" type="text" value="<%=
+    artist
+            .date_formed%>"/>
+    <br />
+    <br />
+    Genre: <input id="genre" name="genre" size="50" type="text" value="<%= artist.genre%>"/>
+    <br />
+    <br />
+    Website Link: <input id="website" name="website" size="50" type="text" value="<%= artist.website%>"/>
+    <br />
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<br />
+<form action="/artist/all">
+    <input type="submit" value="Cancel and return"/>
+</form>
+
+<%- include("../includes/footer.ejs"); %>

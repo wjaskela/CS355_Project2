@@ -18,16 +18,16 @@ router.get('/all', function(req, res) {
 
 // View the recComp for the given id
 router.get('/', function(req, res){
-    if(req.query.recComp_id == null) {
-        res.send('recComp_id is null');
+    if(req.query.name == null) {
+        res.send('Record Company name is null');
     }
     else {
-        recComp_dal.getById(req.query.recComp_id, function(err,result) {
+        recComp_dal.getById(req.query.name, function(err,result) {
             if (err) {
                 res.send(err);
             }
             else {
-                res.render('recComp/recCompViewById', {'result': result});
+                res.render('recComp/recCompViewByName', {'result': result});
             }
         });
     }
@@ -49,14 +49,26 @@ router.get('/add', function(req, res){
 // View the recComp for the given id
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.first_name == "") {
-        res.send('First name must be provided.');
+    if(req.query.name == "") {
+        res.send('Record Company Name must be provided.');
     }
-    else if(req.query.last_name == "") {
-        res.send('Last name must be provided');
+    else if(req.query.founded == "") {
+        res.send('Founded year must be provided');
     }
-    else if(req.query.email == "") {
-        res.send('An email must be provided');
+    else if(req.query.street == "") {
+        res.send('A street must be provided');
+    }
+    else if(req.query.city == "") {
+        res.send('A city must be provided');
+    }
+    else if(req.query.state == "") {
+        res.send('A state must be provided');
+    }
+    else if(req.query.country == "") {
+        res.send('A country must be provided');
+    }
+    else if(req.query.website == "") {
+        res.send('A website must be provided');
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
@@ -73,26 +85,26 @@ router.get('/insert', function(req, res){
 });
 
 router.get('/edit', function(req, res){
-    if(req.query.recComp_id == null) {
-        res.send('An recComp id is required');
+    if(req.query.name == null) {
+        res.send('A Record Company Name is required');
     }
     else {
-        recComp_dal.edit(req.query.recComp_id, function(err, result){
+        recComp_dal.edit(req.query.name, function(err, result){
             console.log(result);
-            res.render('recComp/recCompUpdate', {recComp_id: result[0]});
+            res.render('recComp/recCompUpdate', {name: result[0]});
         });
     }
 
 });
 
 router.get('/edit2', function(req, res){
-    if(req.query.recComp_id == null) {
-        res.send('An recComp id is required');
+    if(req.query.name == null) {
+        res.send('A Record Company Name is required');
     }
     else {
-        recComp_dal.getById(req.query.recComp_id, function(err, recComp){
+        recComp_dal.getById(req.query.name, function(err, recComp){
             //recComp_dal.getAll(function(err, recComp) {
-            res.render('recComp/recCompUpdate', {recComp: recComp[0]});
+            res.render('recComp/recCompUpdate', {record_comp: recComp[0]});
         });
         //});
     }
@@ -107,11 +119,11 @@ router.get('/update', function(req, res){
 
 // Delete a recComp for the given recComp_id
 router.get('/delete', function(req, res){
-    if(req.query.recComp_id == null) {
-        res.send('recComp_id is null');
+    if(req.query.name == null) {
+        res.send('name is null');
     }
     else {
-        recComp_dal.delete(req.query.recComp_id, function(err, result){
+        recComp_dal.delete(req.query.name, function(err, result){
             if(err) {
                 res.send(err);
             }

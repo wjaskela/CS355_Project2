@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title:"Record Companies - Add New"}); %>
+
+<h1>Add New Record Company</h1>
+<form action="/recComp/insert" method="get">
+    Name: <input id="name" name="name" type="text" />
+    <br />
+    <br />
+    Founded (Year): <input id="founded" name="founded" type="int" />
+    <br />
+    <br />
+    Street Name: <input id="street" name="street" type="text" />
+    <br />
+    <br />
+    City: <input id="city" name="city" type="text" />
+    <br />
+    <br />
+    State: <input id="state" name="state" type="text" />
+    <br />
+    <br />
+    Country: <input id="country" name="country" type="text" />
+    <br />
+    <br />
+    Website: <input id="website" name="website" type="text" />
+    <br />
+    <br />
+    <input type="submit" />
+</form>
+
+<br />
+<form action="/recComp/all">
+    <input type="submit" value="Cancel and return"/>
+</form>
+
+<%- include("../includes/footer.ejs"); %>

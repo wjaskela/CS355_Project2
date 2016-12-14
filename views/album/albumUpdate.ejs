@@ -1,0 +1,20 @@
+<%- include("../includes/header.ejs", {title:"Update" + album.title}); %>
+
+<h1>Update <%= album.title%></h1>
+<form action="/album/update" method="get">
+    <input type="hidden" id="album_id" name="album_id" value="<%= album.album_id %>">
+    Title: <input id="title" name="title" size="50" type="text" value="<%= album
+            .title%>"/>
+    <br />
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<br />
+<form action="/album/all">
+    <input type="submit" value="Cancel and return"/>
+</form>
+
+<%- include("../includes/footer.ejs"); %>

@@ -73,24 +73,24 @@ router.get('/insert', function(req, res){
 });
 
 router.get('/edit', function(req, res){
-    if(req.query.artist_id == null) {
+    if(req.query.band_name == null) {
         res.send('An artist id is required');
     }
     else {
-        artist_dal.edit(req.query.artist_id, function(err, result){
+        artist_dal.edit(req.query.band_name, function(err, result){
             console.log(result);
-            res.render('artist/artistUpdate', {artist_id: result[0]});
+            res.render('artist/artistUpdate', {band_name: result[0]});
         });
     }
 
 });
 
 router.get('/edit2', function(req, res){
-    if(req.query.artist_id == null) {
-        res.send('An artist id is required');
+    if(req.query.band_name == null) {
+        res.send('A Band Name is required');
     }
     else {
-        artist_dal.getById(req.query.artist_id, function(err, artist){
+        artist_dal.getByBand(req.query.band_name, function(err, artist){
             //artist_dal.getAll(function(err, artist) {
             res.render('artist/artistUpdate', {artist: artist[0]});
         });
@@ -105,13 +105,13 @@ router.get('/update', function(req, res){
     });
 });
 
-// Delete a artist for the given artist_id
+// Delete a artist for the given band_name
 router.get('/delete', function(req, res){
-    if(req.query.artist_id == null) {
-        res.send('artist_id is null');
+    if(req.query.band_name == null) {
+        res.send('band_name is null');
     }
     else {
-        artist_dal.delete(req.query.artist_id, function(err, result){
+        artist_dal.delete(req.query.band_name, function(err, result){
             if(err) {
                 res.send(err);
             }

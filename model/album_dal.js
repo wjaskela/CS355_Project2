@@ -13,6 +13,14 @@ exports.getAll = function(callback) {
     });
 };
 
+exports.getAllAlbums = function(callback) {
+    var query = 'SELECT * FROM album;';
+
+    connection.query(query, function(err, result) {
+        callback(err, result);
+    });
+};
+
 exports.getById = function(album_id, callback) {
     var query = 'SELECT * FROM viewAlbumWithArtist WHERE album_id = ?';
     var queryData = [album_id];
@@ -23,17 +31,28 @@ exports.getById = function(album_id, callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO album (first_name, last_name, email, album_id) VALUES (?, ?, ?, ?)';
+    console.log (params);
+    var query1 = 'INSERT INTO album (title, cover_lbl_picture, record_co_name) VALUES' +
+        ' (?, ?, ?)';
 
     // the question marks in the sql query above will be replaced by the values of the
     // the data in queryData
-    var queryData = [params.first_name, params.last_name, params.email, params.album_id];
+    var queryData1 = [params.title, params.cover_lbl_picture, params.record_co_name];
 
-    connection.query(query, queryData, function(err, result) {
-        callback(err, result);
+    connection.query(query1, queryData1, function(err, result) {
+
+        var album_id = result.insertId;
+
+        var queryAA = 'INSERT INTO artist_album (album_id, band_name) VALUES (?, ?)';
+
+        var queryData2 = [album_id, params.band_name];
+
+        connection.query(queryAA, queryData2, function (err, result) {
+            callback(err, result);
+        });
     });
-
 };
+
 
 exports.delete = function(album_id, callback) {
     var query = 'DELETE FROM album WHERE album_id = ?';
@@ -45,8 +64,8 @@ exports.delete = function(album_id, callback) {
 };
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE album SET first_name = ?, last_name = ?, email = ? WHERE album_id = ?';
-    var queryData = [params.first_name, params.last_name, params.email, params.album_id];
+    var query = 'UPDATE album SET title = ? WHERE album_id = ?';
+    var queryData = [params.title, params.album_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
