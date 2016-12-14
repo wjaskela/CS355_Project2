@@ -2,24 +2,26 @@
 
     <h1>Music Collection: About</h1>
     <p>
-        The goal of this database is to have a central location for my music collection.  I can store the artist (band), albums and tracks they are associated with, record companies that sign contracts with the various artists,
-        etc.
+        The goal of this website is to allow the ability to view the following:
+        <ul>
+            <li>Artists and associated attributes</li>
+            <li>Albums and associated artists, tracks, record company, etc</li>
+        </ul>
     </p>
     <p>
-        Each artist will contain the band name, singer’s name, when they were formed, the genre, where they started, and an associated website.  The albums will contain the title, an album cover picture, and the associated recording company that sells the album.  The tracks will contain the title, the duration of the track, the associated album, and the track number for that album.  Each record company will contain the name and location, along with their website (if it
-        exists).
+        This website will also allow the user to add new artists, albums, tracks, record
+        companies in order to add to the collection as new information is available.
     </p>
     <p>
-        The relationships are as follows:
-        <ol>
-            <li>An artist has one or more albums</li>
-            <li>An artist sings on one or more tracks</li>
-            <li>An artist contracts with one or more record companies</li>
-            <li>An album contains one or more tracks</li>
-            <li>A record company sells one or more albums</li>
-        </ol>
+        <a href="../images/Project1_ERD.png">Link to ER Diagram image</a>
+        <br />
+        <br />
+        <a href="../images/Project1_Relational_Schema.png">Link to Relational Schema image</a>
+        <br />
+        <br />
+        <a href="/">Return to Home Page</a>
     </p>
-    <p>Contact info:
+    <p align="center">Contact info:
         <br />
         Wayde Jaskela
         <br />
@@ -29,15 +31,6 @@
         <br />
         WJNews@gmail.com
         <br />
-    </p>
-    <p>
-        <a href="http://localhost:3000/images/Project1_ERD.png">Link to ER Diagram image</a>
-        <br />
-        <br />
-        <a href="../images/Project1_Relational_Schema.png">Link to Relational Schema image</a>
-        <br />
-        <br />
-        <a href="/">Return to Home Page</a>
     </p>
 
 <%- include("../includes/footer.ejs"); %>

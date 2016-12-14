@@ -5,7 +5,8 @@ var db  = require('./db_connection.js');
 var connection = mysql.createConnection(db.config);
 
 exports.getAll = function(callback) {
-    var query = 'SELECT * FROM album;';
+    //var query = 'SELECT * FROM album;';
+    var query = 'SELECT * FROM viewAlbumWithArtist;';
 
     connection.query(query, function(err, result) {
         callback(err, result);
@@ -13,7 +14,7 @@ exports.getAll = function(callback) {
 };
 
 exports.getById = function(album_id, callback) {
-    var query = 'SELECT * FROM album WHERE album_id = ?';
+    var query = 'SELECT * FROM viewAlbumWithArtist WHERE album_id = ?';
     var queryData = [album_id];
 
     connection.query(query, queryData, function(err, result) {

@@ -27,6 +27,7 @@ router.get('/', function(req, res){
                 res.send(err);
             }
             else {
+                //res.send(result)
                 res.render('album/albumViewById', {'result': result});
             }
         });

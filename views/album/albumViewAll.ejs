@@ -1,0 +1,37 @@
+<%- include("../includes/header.ejs", {title:"Albums - View All"}); %>
+
+<h1>Albums</h1>
+
+<br />
+<table border="1">
+    <tr><th>Album Title</th>
+        <!--<th>Cover label picture</th>-->
+        <th>Artist</th>
+        <th>Record Company</th>
+        <th>Related Tracks</th>
+        <th>Action</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/album/?album_id=<%= result[i].album_id %>"><%= result[i].title %></a></td>
+        <td><%= result[i].band_name %></td>
+        <td><%= result[i].record_co_name %></td>
+        <td><a href="/album/tracks">Tracks</a></td>
+            <!--<button onclick="event.preventDefault();window.location
+                    .href='/album/edit2/?album_id=<%= result[i].album_id %>'">Edit</button>-->
+        <td>
+            <form action="/album/delet/" style="display:inline;">
+                <input type="hidden" name="album_id" id="album_id" value="<%= result[i].album_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<br />
+<br />
+<a href="/search">Return to Search Page</a>
+<br />
+<a href="/">Return to Home Page</a>
+
+<%- include("../includes/footer.ejs"); %>

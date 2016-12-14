@@ -1,0 +1,36 @@
+<%- include("../includes/header.ejs", {title:"Record Companies - View All"}); %>
+
+<h1>Record Companies</h1>
+
+<br />
+
+<table border="1">
+    <tr><th>Record Company</th>
+        <th>Founded</th>
+        <th>Website</th>
+        <th>Action</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/recComp/?name=<%= result[i].name %>"><%= result[i].name
+                %></a></td>
+        <td><%= result[i].founded %></td>
+        <td><a href="<%= result[i].website %>"><%= result[i].website %></td>
+        <td>
+            <!--<button onclick="event.preventDefault();window.location
+                    .href='/recComp/edit2/?recComp_id=<%= result[i].recComp_id %>'">Edit</button>-->
+            <form action="/recComp/delet/" style="display:inline;">
+                <input type="hidden" name="recComp_id" id="recComp_id" value="<%= result[i].recComp_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+
+<br />
+<br />
+<a href="/search">Return to Search Page</a>
+<br />
+<a href="/">Return to Home Page</a>
+
+<%- include("../includes/footer.ejs"); %>
