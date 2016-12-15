@@ -53,8 +53,8 @@ exports.delete = function(track_id, callback) {
 };
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE track SET first_name = ?, last_name = ?, email = ? WHERE track_id = ?';
-    var queryData = [params.first_name, params.last_name, params.email, params.track_id];
+    var query = 'UPDATE track SET track_number = ?, title = ? WHERE album_id = ?';
+    var queryData = [params.track_number, params.title, params.album_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);

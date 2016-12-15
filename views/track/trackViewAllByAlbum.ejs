@@ -1,6 +1,6 @@
 <%- include("../includes/header.ejs", {title:"Tracks - View All From" + album_id}); %>
 
-<h1>Tracks - View All From <%= album_id %> (Can\'t figure out how to show album title)</h1>
+<h1>Tracks - View All From <%= album_id %> (Can't figure out how to show album title)</h1>
 
 <br />
 
@@ -11,10 +11,10 @@
         <th>Action</th></tr>
     <% for(var i=0; result.length > i; i++ ) { %>
     <tr>
-        <td><%= result[i].track_number %></td>
+        <td align="center"><%= result[i].track_number %></td>
         <td><%= result[i].title %></td>
-        <td><%= result[i].duration %></td>
-        <td>
+        <td align="center"><%= result[i].duration %></td>
+        <td align="center">
             <button onclick="event.preventDefault();window.location
                     .href='/track/edit2/?track_id=<%= result[i].track_id %>'">Edit</button>
             <form action="/track/delete/" style="display:inline;">

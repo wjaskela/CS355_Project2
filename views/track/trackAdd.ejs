@@ -1,0 +1,19 @@
+<%- include("../includes/header.ejs", {title:"Track - Add New"}); %>
+
+<h1>Add New Track</h1>
+<form action="/track/insert" method="get">
+    Title: <input id="title" name="title" type="text" />
+    <br />
+    <br />
+    Duration (xx:xx:xx): <input id="duration" name="duration" type="text" />
+    <br />
+    <br />
+    <input type="submit" />
+</form>
+
+<br />
+<input class="button" type="button" onclick="window.location.replace
+        ('/album/tracks/?album_id=<%=track.album_id %>')"
+       value="Cancel and return" />
+
+<%- include("../includes/footer.ejs"); %>

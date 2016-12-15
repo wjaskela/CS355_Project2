@@ -1,8 +1,30 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #3b3b3b;
+  color: goldenrod;
 }
 
-a {
-  color: #00B7FF;
+a:link, a:visited {
+  color: lightgray;
+  text-decoration: none;
+}
+a:hover {
+  color: goldenrod;
+  text-decoration: underline;
+}
+
+th {
+  font-size: larger;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+td {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

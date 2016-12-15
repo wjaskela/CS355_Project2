@@ -11,11 +11,12 @@
         <th>Action</th></tr>
     <% for(var i=0; result.length > i; i++ ) { %>
     <tr>
-        <td><a href="/album/?album_id=<%= result[i].album_id %>"><%= result[i].title %></a></td>
-        <td><%= result[i].band_name %></td>
-        <td><%= result[i].record_co_name %></td>
-        <td><a href="/album/tracks/?album_id=<%= result[i].album_id %>">Tracks</a></td>
-        <td>
+        <td align="center"><a href="/album/?album_id=<%= result[i].album_id %>"><%= result[i].title
+                %></a></td>
+        <td align="center"><%= result[i].band_name %></td>
+        <td align="center"><%= result[i].record_co_name %></td>
+        <td align="center"><a href="/album/tracks/?album_id=<%= result[i].album_id %>">Tracks</a></td>
+        <td align="center">
             <button onclick="event.preventDefault();window.location
                     .href='/album/edit2/?album_id=<%= result[i].album_id %>'">Edit</button>
             <form action="/album/delete/" style="display:inline;">

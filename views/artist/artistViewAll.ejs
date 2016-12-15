@@ -12,12 +12,12 @@
         <th>Action</th></tr>
     <% for(var i=0; result.length > i; i++ ) { %>
     <tr>
-        <td><a href="/artist/?band_name=<%= result[i].band_name %>"><%= result[i].band_name
+        <td align="center"><a href="/artist/?band_name=<%= result[i].band_name %>"><%= result[i].band_name
                 %></a></td>
-        <td><%= result[i].singer_name %></a></td>
-        <td><%= result[i].genre %></td>
-        <td><a href="<%= result[i].website %>"><%= result[i].website %></td>
-        <td>
+        <td align="center"><%= result[i].singer_name %></td>
+        <td align="center"><%= result[i].genre %></td>
+        <td align="center"><a href="<%= result[i].website %>"></a><%= result[i].website %></td>
+        <td align="center">
             <button onclick="event.preventDefault();window.location
                     .href='/artist/edit2/?band_name=<%= result[i].band_name %>'">Edit</button>
             <form action="/artist/delete/" style="display:inline;">

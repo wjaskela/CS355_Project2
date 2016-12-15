@@ -1,0 +1,22 @@
+<%- include("../includes/header.ejs", {title:"Update" + track.title}); %>
+
+<h1>Update <%= track.title%></h1>
+<form action="/track/update" method="get">
+    <input type="hidden" id="title" name="title" value="<%= track.title %>">
+    Track Number: <input id="track_number" name="track_number" size="10" type="text" value="<%= track
+            .track_number%>"/>
+    <br />
+    <br />
+    Track Title: <input id="title" name="title" size="50" type="text" value="<%= track
+            .title%>"/>
+    <br />
+    <br />
+
+    <input type="submit" />
+</form>
+
+<br />
+<input class="button" type="button" onclick="window.location.replace
+        ('/album/tracks/?album_id=<%= track.album_id %>')" value="Cancel and return" />
+
+<%- include("../includes/footer.ejs"); %>

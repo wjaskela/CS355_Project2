@@ -92,6 +92,7 @@ router.get('/edit2', function(req, res){
     else {
         track_dal.getById(req.query.track_id, function(err, track){
             //track_dal.getAll(function(err, track) {
+            //res.send(track);
             res.render('track/trackUpdate', {track: track[0]});
         });
         //});
@@ -100,8 +101,10 @@ router.get('/edit2', function(req, res){
 });
 
 router.get('/update', function(req, res){
+    console.log(req.query);
     track_dal.update(req.query, function(err, result){
-        res.redirect(302, '/track/all');
+        res.send(result);
+        //res.redirect(302, '/album/all');
     });
 });
 
