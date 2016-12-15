@@ -31,11 +31,11 @@ exports.getByAlbumId = function(album_id, callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO track (first_name, last_name, email, track_id) VALUES (?, ?, ?, ?)';
+    var query = 'INSERT INTO track (track_number, title, duration) VALUES (?, ?, ?)';
 
     // the question marks in the sql query above will be replaced by the values of the
     // the data in queryData
-    var queryData = [params.first_name, params.last_name, params.email, params.track_id];
+    var queryData = [params.track_number, params.title, params.duration];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -53,8 +53,8 @@ exports.delete = function(track_id, callback) {
 };
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE track SET track_number = ?, title = ? WHERE album_id = ?';
-    var queryData = [params.track_number, params.title, params.album_id];
+    var query = 'UPDATE track SET track_number = ?, title = ?, duration = ? WHERE track_id = ?';
+    var queryData = [params.track_number, params.title, params.duration, params.track_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);

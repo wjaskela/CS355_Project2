@@ -17,20 +17,22 @@
         <td align="center">
             <button onclick="event.preventDefault();window.location
                     .href='/track/edit2/?track_id=<%= result[i].track_id %>'">Edit</button>
-            <form action="/track/delete/" style="display:inline;">
+            <!--<form action="/track/delete/" style="display:inline;">
                 <input type="hidden" name="track_id" id="track_id" value="<%= result[i].track_id %>" />
                 <input type="submit" value="Delete"/>
-            </form>
+            </form>-->
         </td>
     </tr>
     <% } %>
 </table>
 
-<br />
+<!-- I could not get the 'Add Track' code to work.  Commenting this out!!  Also commented the
+Delete option... -->
+<!--<br />
 <br />
 <form action="/track/add">
     <input type="submit" value="Add New Track for this album"/>
-</form>
+</form>-->
 
 <br />
 <br />

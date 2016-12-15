@@ -2,13 +2,18 @@
 
 <h1>Update <%= track.title%></h1>
 <form action="/track/update" method="get">
-    <input type="hidden" id="title" name="title" value="<%= track.title %>">
+    <input type="hidden" id="album_id" name="album_id" value="<%= track.album_id %>">
+    <input type="hidden" id="track_id" name="track_id" value="<%= track.track_id %>">
     Track Number: <input id="track_number" name="track_number" size="10" type="text" value="<%= track
             .track_number%>"/>
     <br />
     <br />
     Track Title: <input id="title" name="title" size="50" type="text" value="<%= track
             .title%>"/>
+    <br />
+    <br />
+    Duration (xx:xx:xx): <input id="duration" name="duration" size="50" type="text" value="<%= track
+            .duration%>"/>
     <br />
     <br />
 

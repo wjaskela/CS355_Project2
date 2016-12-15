@@ -49,25 +49,27 @@ router.get('/add', function(req, res){
 // View the track for the given id
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.first_name == "") {
-        res.send('First name must be provided.');
+    if(req.query.track_number == "") {
+        res.send('A Track Number must be provided.');
     }
-    else if(req.query.last_name == "") {
-        res.send('Last name must be provided');
+    if(req.query.title == "") {
+        res.send('Title must be provided.');
     }
-    else if(req.query.email == "") {
-        res.send('An email must be provided');
+    else if(req.query.duration == "") {
+        res.send('Duration must be provided');
     }
     else {
-        // passing all the query parameters (req.query) to the insert function instead of each individually
-        track_dal.insert(req.query, function(err,result) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                //poor practice, but we will handle it differently once we start using Ajax
-                res.redirect(302, '/track/all');
-            }
+        track_dal.getByAlbumId(req.query, function(err, result) {
+            // passing all the query parameters (req.query) to the insert function instead of each individually
+            track_dal.insert(req.query, function (err, result) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    //poor practice, but we will handle it differently once we start using Ajax
+                    res.redirect(302, '/album/all');
+                }
+            });
         });
     }
 });
@@ -101,10 +103,12 @@ router.get('/edit2', function(req, res){
 });
 
 router.get('/update', function(req, res){
-    console.log(req.query);
-    track_dal.update(req.query, function(err, result){
-        res.send(result);
+    track_dal.getByAlbumId(req.query, function(err, result) {
+        track_dal.update(req.query, function (err, result) {
+        });
         //res.redirect(302, '/album/all');
+        var myStr = '/album/tracks/?album_id=' + req.query.album_id;
+        res.redirect(302, myStr);
     });
 });
 
